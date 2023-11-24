@@ -17,7 +17,9 @@ public class PersonService {
     @Autowired
     PersonRepository repository;
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate outsideRestTemplate;
+    RestTemplate restTemplate = new RestTemplate();
+
 
     public Weather getWeather(int id){
         if(repository.existsById(id)){

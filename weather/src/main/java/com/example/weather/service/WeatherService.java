@@ -15,7 +15,8 @@ import org.springframework.web.client.RestTemplate;
 @CacheConfig(cacheNames = "weatherCache", cacheManager = "cacheManager")
 public class WeatherService {
     @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate outsideRestTemplate;
+    RestTemplate restTemplate = new RestTemplate();
     @Value("${appid}")
     private String appId;
     @Value("${url.weather}")

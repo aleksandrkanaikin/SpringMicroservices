@@ -15,7 +15,8 @@ public class GeodataService {
     GeodataRepository repository;
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate outsideRestTemplate;
+    RestTemplate restTemplate = new RestTemplate();
 
     //Перенаправление на сервис weather
     public Weather getWeather(String location){
