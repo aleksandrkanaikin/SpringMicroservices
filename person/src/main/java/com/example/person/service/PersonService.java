@@ -17,14 +17,12 @@ public class PersonService {
     @Autowired
     PersonRepository repository;
     @Autowired
-    private RestTemplate outsideRestTemplate;
-    RestTemplate restTemplate = new RestTemplate();
-
+    private RestTemplate restTemplate;
 
     public Weather getWeather(int id){
         if(repository.existsById(id)){
             String location = repository.findById(id).get().getLocation();
-            Weather weather = restTemplate.getForObject("http://localhost:8081/location/weather?location=" + location, Weather.class);
+            Weather weather = restTemplate.getForObject("http://location-service/location/weather?location=" + location, Weather.class);
             return weather;
         }
         else return null;

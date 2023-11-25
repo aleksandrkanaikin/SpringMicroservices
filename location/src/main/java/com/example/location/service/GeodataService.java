@@ -15,13 +15,12 @@ public class GeodataService {
     GeodataRepository repository;
 
     @Autowired
-    private RestTemplate outsideRestTemplate;
-    RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate;
 
     //Перенаправление на сервис weather
     public Weather getWeather(String location){
         Geodata geodata = repository.findByName(location).get();
-        String url = String.format("http://localhost:8082/weather/lat=%s&lon=%s", geodata.getLat(), geodata.getLon());
+        String url = String.format("http://weather-service/weather/lat=%s&lon=%s", geodata.getLat(), geodata.getLon());
         return restTemplate.getForObject(url, Weather.class);
     }
 
